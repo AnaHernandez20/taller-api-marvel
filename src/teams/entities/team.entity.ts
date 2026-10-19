@@ -1,5 +1,6 @@
 //Importar herramientas de TypeORM para definir nuestra entidad y sus columnas
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
+import { Character } from '../../characters/entities/character.entity.js';
 
 @Entity('teams') //esta es la entidad que representa la tabla teams en la base de datos
 export class Team {
@@ -30,4 +31,8 @@ export class Team {
     //la columna updated_at es de tipo TIMESTAMP, no puede ser NULL y registra cuándo se actualizó el equipo
     @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
     updatedAt: Date;
+
+    //Relación inversa donde un equipo puede tener muchos personajes
+    @OneToMany(() => Character, character => character.team)
+    characters: Character[];
 }
