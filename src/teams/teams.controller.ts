@@ -41,7 +41,7 @@ export class TeamsController {
         return await this.teamsService.update(id, datosEquipo);
     }
 
-    // PATCH /teams/:id/characters: asigna personajes a un equipo existente. Cuando sea /teams/id/characters y le mandemos un body, es un post
+    // PATCH /teams/:id/characters: asigna personajes a un equipo existente. Cuando sea /teams/id/characters y le mandemos un body, es un patch
     @Patch(':id/characters')
     async assignCharacters(@Param('id', ParseIntPipe) id: number, @Body() datosAsignacion: AssignCharactersDto) {
         return await this.teamsService.assignCharacters(id, datosAsignacion);

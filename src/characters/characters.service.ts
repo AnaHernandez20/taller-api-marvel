@@ -23,7 +23,7 @@ export class CharactersService {
     ) {}
 
     //Consulta los personajes y permite filtrar por estado y equipo
-    //Estado es un string que puede ser "active" o "inactive" y idEquipo es un número que representa el ID del equipo xd
+    //El estado puede ser ACTIVE, INJURED, MISSING o RETIRED y idEquipo es un número que representa el ID del equipo xd
     //Son variables opcionales, si no se pasan, se devuelven todos los personajes sin filtrar y yap
     async findAll(estado?: string, idEquipo?: number): Promise<Character[]> {
 
@@ -119,6 +119,14 @@ export class CharactersService {
             throw new NotFoundException(`No existe un personaje con ID ${id}`);
         }
 
+        //No permitir que un personaje RETIRED pase directamente a INJURED
+        if (
+            //si el personaje está retirado y se intenta cambiar su estado a lesionado
+            personaje.status === CharacterStatus.RETIRED && datosPersonaje.status === CharacterStatus.INJURED
+        ) {
+            throw new BadRequestException('Un personaje retirado no puede pasar directamente a lesionado');
+        }
+
         //Verificar que el alias no pertenezca a otro personaje
         const personajeMismoAlias = await this.characterRepository.findOneBy({
             alias: datosPersonaje.alias //traigame el personaje que tenga este alias
@@ -129,8 +137,8 @@ export class CharactersService {
             throw new ConflictException('Ya existe otro personaje con ese alias');
         }
 
-        //Si se cambia el equipo, verificar que exista y esté activo
-        if (datosPersonaje.teamId !== null && datosPersonaje.teamId !== personaje.teamId) {
+        //Si se indica el equipo, verificar que exista y esté activo
+        if (datosPersonaje.teamId !== null) {
             
             //Verificamos el equipo del personaje
             const equipo = await this.teamRepository.findOneBy({

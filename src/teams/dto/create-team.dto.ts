@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, MaxLength, IsInt, Min, Max, IsBoolean, IsOptional, IsArray, } from 'class-validator';
+import { IsString, IsNotEmpty, MaxLength, IsInt, Min, Max, IsBoolean, IsOptional, IsArray, ValidateIf, } from 'class-validator';
 
 //este DTO es para crear un nuevo equipo (hacer el POST /teams)
 export class CreateTeamDto {
@@ -22,8 +22,9 @@ export class CreateTeamDto {
   @Max(2100)
   foundedYear?: number | null;
 
-  //El estado activo es opcional y debe ser booleano
-  @IsOptional()
+  //El estado es opcional al crear
+  //Si se envía, debe ser true o false y no puede ser null
+  @ValidateIf((objeto) => objeto.active !== undefined)
   @IsBoolean()
   active?: boolean;
 

@@ -16,11 +16,11 @@ export class CharactersController {
     @Get()
     async findAll(
         //parseo a enum CharacterStatus (xq solo pueden tener los valores definidos en el enum)
-        @Query('status', new ParseEnumPipe(CharacterStatus, { optional: true }))
+        @Query('status', new ParseEnumPipe(CharacterStatus, { optional: true })) //query es el parámetro de consulta opcional 
         estado?: CharacterStatus,
 
         //parseo a número (xq los IDs de los equipos son números)
-        @Query('teamId', new ParseIntPipe({ optional: true }))
+        @Query('teamId', new ParseIntPipe({ optional: true })) 
         idEquipo?: number,
     ) {
         return await this.servicioPersonajes.findAll(estado, idEquipo);
