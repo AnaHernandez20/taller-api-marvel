@@ -1,5 +1,6 @@
 import { IsString, IsNotEmpty, MaxLength, IsInt, Min, Max, IsBoolean, IsOptional, IsArray, } from 'class-validator';
 
+//este DTO es para crear un nuevo equipo (hacer el POST /teams)
 export class CreateTeamDto {
 
   //El nombre es obligatorio y tiene máximo 100 caracteres
