@@ -47,7 +47,7 @@ export class TeamsController {
         return await this.teamsService.assignCharacters(id, datosAsignacion);
     }
 
-    // DELETE /teams/:id: elimina un equipo existente. Cuando sea /teams/id y le mandemos un body, es un delete
+    // DELETE /teams/:id: elimina un equipo existente. Cuando sea /teams/id y le mandemos un id, es un delete
     @Delete(':id')
     async remove(@Param('id', ParseIntPipe) id: number) {
         return await this.teamsService.remove(id);
