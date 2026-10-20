@@ -3,9 +3,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Character } from './entities/character.entity.js';
 import { CharactersController } from './characters.controller.js';
 import { CharactersService } from './characters.service.js';
+import { Team } from '../teams/entities/team.entity.js';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Character])], //Usaremos la entity Character
+  imports: [TypeOrmModule.forFeature([Character, Team])], //Usaremos la entity Character y Team
   controllers: [CharactersController], //Usaremos el controlador CharactersController
   providers: [CharactersService], //Usaremos el servicio CharactersService
 })
