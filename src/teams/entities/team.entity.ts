@@ -8,11 +8,11 @@ export class Team {
     @PrimaryGeneratedColumn()
     id: number;
 
-    //la columna name es de tipo varchar, con una longitud máxima de 100 caracteres, debe ser única y no puede ser NULL
+    //la columna name es de tipo varchar, max 100 caracteres, debe ser única y no puede ser NULL
     @Column({ type: 'varchar', length: 100, unique: true, nullable: false })
     name: string;
 
-    //la columna base es de tipo varchar, con una longitud máxima de 150 caracteres y sí puede ser NULL
+    //la columna base es de tipo varchar, max 150 caracteres y sí puede ser NULL
     @Column({ type: 'varchar', length: 150, nullable: true })
     base: string | null;
 
@@ -32,7 +32,8 @@ export class Team {
     @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
     updatedAt: Date;
 
-    //Relación inversa donde un equipo puede tener muchos personajes
+    //ACA VA DE UNA LA RELACIÓN CON LOS PERSONAJES
+    //Relación donde un equipo puede tener muchos personajes
     @OneToMany(() => Character, character => character.team)
     characters: Character[];
 }

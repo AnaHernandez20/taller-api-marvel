@@ -4,21 +4,21 @@ import { IsString, IsNotEmpty, MaxLength, IsInt, Min, Max, IsBoolean, ValidateIf
 
 export class UpdateTeamDto {
 
-    //El nombre es obligatorio y de máximo 100 caracteres
+    //El nombre es obligatorio y de max 100 caracteres
     @IsString()
     @IsNotEmpty()
     @MaxLength(100)
     name: string;
 
-    //La base debe incluirse, pero puede ser NULL
+    //La base debe incluirse, pero puede ser null
     @IsDefined() //tiene que pasarse el valor de base, aunque sea null
     @ValidateIf((objeto) => objeto.base !== null) //Si el valor de base no es null, entonces se aplican las validaciones siguientess:
     @IsString()
     @MaxLength(150)
     base: string | null;
 
-    //El año debe incluirse, pero puede ser NULL
-    @IsDefined() //tiene que pasarse el valor de base, aunque sea null
+    //El año debe incluirse, pero puede ser null
+    @IsDefined() //tiene que pasarse el valor, aunque sea null
     @ValidateIf((objeto) => objeto.foundedYear !== null) //Si el valor de foundedYear no es null, entonces se aplican las validaciones siguientes:
     @IsInt()
     @Min(1900)

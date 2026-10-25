@@ -1,6 +1,7 @@
 import { IsArray, IsInt, ArrayNotEmpty, ArrayUnique} from 'class-validator';
 
 //este DTO es para asignar 1 o varios personajes existentes a un equipo existente (hacer el PATCH /teams/:id/characters)
+//es lo que tiene que llegar para asignar personajes a un equipo existente (1 lista)
 export class AssignCharactersDto {
 
     //Lista obligatoria de IDs de personajes que queremos asignar

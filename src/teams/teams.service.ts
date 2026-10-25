@@ -236,9 +236,4 @@ export class TeamsService {
             mensaje: `El equipo con ID ${id} fue eliminado correctamente`,
         };
     }
-
-
-
-
-
 }

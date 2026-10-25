@@ -3,13 +3,13 @@ import { IsString, IsNotEmpty, MaxLength, IsInt, Min, Max, IsBoolean, IsOptional
 //este DTO es para crear un nuevo equipo (hacer el POST /teams)
 export class CreateTeamDto {
 
-  //El nombre es obligatorio y tiene máximo 100 caracteres
+  //El nombre es obligatorio y tiene max 100 caracteres
   @IsString()
   @IsNotEmpty()
   @MaxLength(100)
   name: string;
 
-  //La base es opcional, puede ser NULL y tiene máximo 150 caracteres
+  //La base es opcional, puede ser NULL y tiene max 150 caracteres
   @IsOptional()
   @IsString()
   @MaxLength(150)
