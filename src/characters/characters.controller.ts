@@ -50,7 +50,7 @@ export class CharactersController {
         return await this.servicioPersonajes.update(id, datosPersonaje);
     }
 
-    // PATCH /characters/:id/status: modifica solo el estado de un personaje
+    // PATCH /characters/:id/status para modificar solo el estado de un personaje
     @Patch(':id/status')
     async updateStatus(
         //parseo a número (xq los IDs de los personajes son números)
@@ -61,7 +61,7 @@ export class CharactersController {
         return await this.servicioPersonajes.updateStatus(id, datosEstado);
     }
     
-    // DELETE /characters/:id elimina un personaje
+    // DELETE /characters/:id para eliminar un personaje
     @Delete(':id')
     //parseo a número (xq los IDs de los personajes son números)
     async remove(@Param('id', ParseIntPipe) id: number) {

@@ -4,19 +4,19 @@ import { CharacterStatus } from '../enums/character-status.enum.js';
 //dto para actualizar todo un personaje existente con put
 export class UpdateCharacterDto {
 
-    //Nombre real obligatorio y de máximo 100 caracteres
+    //Nombre real obligatorio y de max 100 caracteres
     @IsString()
     @IsNotEmpty()
     @MaxLength(100)
     realName: string;
 
-    //Alias obligatorio y de máximo 100 caracteres
+    //Alias obligatorio y de max 100 caracteres
     @IsString()
     @IsNotEmpty()
     @MaxLength(100)
     alias: string;
 
-    //Poder principal obligatorio y de máximo 150 caracteres
+    //Poder principal obligatorio y de max 150 caracteres
     @IsString()
     @IsNotEmpty()
     @MaxLength(150)
@@ -32,11 +32,11 @@ export class UpdateCharacterDto {
     @IsEnum(CharacterStatus)
     status: CharacterStatus;
 
-    //Indica si es villano. Obligatorio en este PUT y debe ser un valor booleano (true o false)
+    //Indica si es villanoo
     @IsBoolean()
     isVillain: boolean;
 
-    //El campo debe enviarse, pero puede ser NULL
+    //El campo debe enviarse, pero puede ser NULL (ojito para postman)
     @ValidateIf((objeto) => objeto.teamId !== null) //si se envia, se valida que sea un entero
     @IsDefined()
     @IsInt()

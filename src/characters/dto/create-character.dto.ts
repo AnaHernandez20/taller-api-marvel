@@ -4,19 +4,19 @@ import { CharacterStatus } from '../enums/character-status.enum.js';
 //dto para crear un nuevo personaje con post
 export class CreateCharacterDto {
 
-    //Nombre real obligatorio y de máximo 100 caracteres
+    //Nombre real obligatorio y de max 100 caracteres
     @IsString()
     @IsNotEmpty()
     @MaxLength(100)
     realName: string;
 
-    //Alias obligatorio y de máximo 100 caracteres
+    //Alias obligatorio y de max 100 caracteres
     @IsString()
     @IsNotEmpty()
     @MaxLength(100)
     alias: string;
 
-    //Poder principal obligatorio y de máximo 150 caracteres
+    //Poder principal obligatorio y de max 150 caracteres
     @IsString()
     @IsNotEmpty()
     @MaxLength(150)
@@ -40,7 +40,7 @@ export class CreateCharacterDto {
     @IsBoolean()
     isVillain?: boolean;
 
-    //Equipo opcional. Puede ser NULL
+    //Equipo opcional, pero puede ser NULL
     @IsOptional()
     @IsInt()
     teamId?: number | null;

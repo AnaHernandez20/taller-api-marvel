@@ -22,6 +22,8 @@ export class CharactersService {
         //inyecto el repositorio de equipos para poder realizar operaciones sobre ellos en la base de datos
     ) {}
 
+    //En clase dijimos que de general a especifico
+
     //Consulta los personajes y permite filtrar por estado y equipo
     //El estado puede ser ACTIVE, INJURED, MISSING o RETIRED y idEquipo es un número que representa el ID del equipo xd
     //Son variables opcionales, si no se pasan, se devuelven todos los personajes sin filtrar y yap
@@ -34,6 +36,7 @@ export class CharactersService {
         } = {};
 
         //Agregar filtro de estado cuando se escribe. Si estado es undefined, no se agrega el filtro
+        //Recordar q undefined significa que no se pasó ninguna valor
         if (estado !== undefined) {
             condiciones.status = estado;
         }
@@ -68,6 +71,7 @@ export class CharactersService {
     //Crea un nuevo personaje en la base de datos
     //Toca verificar que no exista otro personaje con el mismo alias y que el equipo asignado exista y esté activo
     async create(datosPersonaje: CreateCharacterDto): Promise<Character> {
+        //como parametro llega el DTO con los datos del personaje a crear
 
         //Verificar que no exista otro personaje con el mismo alias
         const personajeExistente = await this.characterRepository.findOneBy({
@@ -110,6 +114,7 @@ export class CharactersService {
 
     //Metodo update para reemplazar un personaje completo (hacer el put)
     async update(id: number, datosPersonaje: UpdateCharacterDto): Promise<Character> {
+        //como parametro llega el ID del personaje a actualizar y el DTO con los nuevos datos
 
         //Verificar que el personaje exista
         const personaje = await this.characterRepository.findOneBy({ id });
@@ -156,7 +161,7 @@ export class CharactersService {
             }
         }
 
-        //Reemplazar los datos modificables del personaje en la entidad antes de guardarla
+        //Reemplazar los datosa modificar del personaje en la entidad antes de guardarla
         personaje.realName = datosPersonaje.realName;
         personaje.alias = datosPersonaje.alias;
         personaje.mainPower = datosPersonaje.mainPower;
